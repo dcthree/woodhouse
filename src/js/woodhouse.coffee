@@ -140,7 +140,7 @@ search_for = (value) ->
         else
           console.log "No abbreviation lookup for #{$(this).text()}"
     $('#results i').each (index, element) ->
-      if this.previousSibling? and (this.previousSibling.nodeValue.match(/(see|under) $/i))
+      if this.previousSibling? and (this.previousSibling.nodeValue.match(/(see also|see|under) $/i))
         word_links = ("<a href=\"##{see_word.replace('.','').trim()}\"><i>#{see_word}</i></a>" for see_word in $(this).text().split(','))
         $(this).replaceWith(word_links.join(','))
   else
