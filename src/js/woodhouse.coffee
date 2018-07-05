@@ -35,7 +35,6 @@ $(document).ready ->
           minLength: 1
           source: []
           select: (event, ui) ->
-            console.log(ui)
             if window.location.hash != ui.item.value
               search_for(ui.item.value)
           search: (event, ui) ->
