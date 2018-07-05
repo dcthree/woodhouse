@@ -125,6 +125,7 @@ normalize = (input) ->
   input.normalize().toLowerCase().trim() # .replace(/[-<>⸤⸥†*";.,\][_(){}&:^·\\=0-9]/g,'')
 
 search_for = (value) ->
+  window.location = "##{value}"
   console.log("searching for: #{value}")
   $('#results').empty()
   $('#results').append("<a href=\"http://artflsrv02.uchicago.edu/cgi-bin/efts/dicos/woodhouse_test.pl?keyword=#{value}\" target=\"_blank\">Search for \"#{value}\" in the University of Chicago Woodhouse</a><br/><br/>")
@@ -138,8 +139,18 @@ search_for = (value) ->
           $(this).prop('title', ABBREVIATIONS[$(this).text()])
         else
           console.log "No abbreviation lookup for #{$(this).text()}"
+    $('#results i').each (index, element) ->
+      if this.previousSibling? and (this.previousSibling.nodeValue.match(/(see|under) $/))
+        word_links = ("<a href=\"##{see_word.replace('.','').trim()}\"><i>#{see_word}</i></a>" for see_word in $(this).text().split(','))
+        $(this).replaceWith(word_links.join(','))
   else
     $('#results').append("<span>No results for \"#{value}\".</span>")
+
+search_for_hash = ->
+  hash_parameter = decodeURI(window.location.hash.substr(1))
+  console.log 'got hash parameter:', hash_parameter
+  $('#search').val(hash_parameter)
+  search_for(hash_parameter)
 
 $(document).ready ->
   console.log('ready')
@@ -172,5 +183,8 @@ $(document).ready ->
           response(matches[0..20])
         $('#search').prop('placeholder','Enter an English search term')
         $('#search').prop('disabled',false)
+        window.addEventListener('hashchange', search_for_hash, false)
+        if window.location.hash?.length
+          search_for_hash()
     }
   )
