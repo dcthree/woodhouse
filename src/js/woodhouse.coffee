@@ -161,7 +161,12 @@ search_for = (value) ->
         if this.previousElementSibling? and ABBREVIATIONS[this.previousElementSibling.textContent]? and ABBREVIATIONS[this.previousElementSibling.textContent][$(this).text()]?
           $(this).prop('title', ABBREVIATIONS[this.previousElementSibling.textContent][$(this).text()])
         if this.previousSibling.nodeValue? and this.previousSibling.nodeValue.match(/(see also|see|under) $/i)
-          word_links = ("<a href=\"##{see_word.replace('.','').trim()}\"><i>#{see_word}</i></a>" for see_word in $(this).text().split(','))
+          word_links = for see_word in $(this).text().split(',')
+            normalized_word = see_word.replace('.','').trim()
+            if WOODHOUSE_INDEX[normalized_word]?
+              "<a href=\"##{normalized_word}\"><i>#{see_word}</i></a>"
+            else
+              "<i>#{see_word}</i>"
           $(this).replaceWith(word_links.join(','))
   else
     $('#results').append("<span>No results for \"#{value}\".</span>")
