@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Woodhouse English-Greek Dictionary</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script data-main="src/js/woodhouse" src="src/js/vendor/requirejs/2.3.3/require.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div style="text-align: center">
+        <h1>Woodhouse English-Greek Dictionary</h1>
+        <h3><small>Search for headwords in the Woodhouse English-Greek Dictionary.</small></h3>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-md-3"> </div>
+        <div class="ui-widget col-md-6">
+          <input id="search" class="form-control" placeholder="Enter an English search term" />
+        </div>
+        <div class="col-md-3"> </div>
+      </div>
+      <br />
+      <div id="search_status"><p>&nbsp;</p></div>
+      <div id="results">
+      </div>
+    </div>
+  </body>
+</html>
